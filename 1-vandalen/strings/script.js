@@ -7,13 +7,27 @@ window.onload = function(){
 		// Plats för förändring.		
 		// Returnera den konverterade strängen.
 		// Vid fel, kasta ett undantag med ett meddelande till användaren. 
+		
+		var text = "";
+		
+		if (str === ""){
+			throw new Error("Skriv in din text")
+		}
 	
-
-
-
-
-
-
+		for (var i=0; i <= str.length; i+=1){
+			var character = str.charAt(i);
+			
+			if (character == character.toUpperCase()){
+				text += character.toLowerCase(); 
+			}
+			else if (character == character.toLowerCase()){
+				text += character.toUpperCase(); 
+			}
+		}
+		
+		text = text.replace(/a/gi, "#");
+		return text; 
+		
 	};
 	// ------------------------------------------------------------------------------
 

@@ -19,18 +19,15 @@ window.onload = function(){
 	//			throw new Error ("Mata in födelsedatum i formen ÅÅÅÅ-MM-DD");
 	//		}
 		
+		if ((birthdayDate.getTime() - now.getTime()) < 0){		//Om antalet dagar kvar är mindre än 0 har användaren redan fyllt år
+			birthdayDate.setFullYear(now.getFullYear()+1);		//Ändra året till nästkommande år
+		}
+		
 		var msLeft = birthdayDate.getTime() - now.getTime();	//Antalet millisekunder kvar till födelsedagen
 		var daysLeft = msLeft/(1000 * 60 * 60 * 24);			//Omvandla till dagar
 		var daysLeftRounded = Math.round(daysLeft);				//Avrunda till heltal
 		
-		if (msLeft < 0){										//Om antalet dagar kvar är mindre än 0 har användaren redan fyllt år
-			birthdayDate.setFullYear(now.getFullYear()+1);		//Ändra året till nästkommande år
-			msLeft = birthdayDate.getTime() - now.getTime();	//Antalet millisekunder kvar till födelsedagen
-			daysLeft = msLeft/(1000 * 60 * 60 * 24);			//Omvandla till dagar
-			daysLeftRounded = Math.round(daysLeft);	
-		}
-			
-			return daysLeftRounded;
+		return daysLeftRounded;
 		
 		
 	};

@@ -9,26 +9,29 @@ window.onload = function(){
 		var birthdayDate = new Date(date);			//Skapa nytt datumobjekt när användaren fyller år
 		var now = new Date();						//Skapa nytt datumobjekt med dagens datum
 		birthdayDate.setFullYear(now.getFullYear());    //Ändra inläst år till nuvarande år
+	
 		
 			console.log(birthdayDate);
 			console.log(now);
 		
-		//var pattern = /\d{4}\-\d{2}\-\d{2}/;
-		//	if (!pattern.test(birthdayDate)){
-		//		throw new Error ("Mata in födelsedatum i formen ÅÅÅÅ-MM-DD")
-		//	}
+	//	var pattern = /\d{4}\-\d{2}\-\d{2}/;
+	//		if (!pattern.test(birthdayDate)){
+	//			throw new Error ("Mata in födelsedatum i formen ÅÅÅÅ-MM-DD");
+	//		}
 		
 		var msLeft = birthdayDate.getTime() - now.getTime();	//Antalet millisekunder kvar till födelsedagen
 		var daysLeft = msLeft/(1000 * 60 * 60 * 24);			//Omvandla till dagar
 		var daysLeftRounded = Math.round(daysLeft);				//Avrunda till heltal
 		
-		if (daysLeftRounded > 0){								
+		if (msLeft < 0){										//Om antalet dagar kvar är mindre än 0 har användaren redan fyllt år
+			birthdayDate.setFullYear(now.getFullYear()+1);		//Ändra året till nästkommande år
+			msLeft = birthdayDate.getTime() - now.getTime();	//Antalet millisekunder kvar till födelsedagen
+			daysLeft = msLeft/(1000 * 60 * 60 * 24);			//Omvandla till dagar
+			daysLeftRounded = Math.round(daysLeft);	
+		}
+			
 			return daysLeftRounded;
-		}
-		else if (daysLeftRounded < 0){							//Om antalet dagar kvar är mindre än 0 har användaren redan fyllt år
-			var daysLeft2 = 365 + daysLeftRounded;     //Skottår ??
-			return daysLeft2;
-		}
+		
 		
 	};
 	// ------------------------------------------------------------------------------

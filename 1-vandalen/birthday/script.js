@@ -7,18 +7,16 @@ window.onload = function(){
 		
 			// Din kod här.
 		var birthdayDate = new Date(date);			//Skapa nytt datumobjekt när användaren fyller år
-		var now = new Date();						//Skapa nytt datumobjekt med dagens datum
+		if (isNaN(birthdayDate.valueOf()))			//Kontrollera så att datumet är skrivet i rätt format.
+ 		{
+  			throw new Error("Skriv in datum i formen 'ÅÅÅÅ-MM-DD'");
+ 		}  
+		
+		var now = new Date();							//Skapa nytt datumobjekt med dagens datum
+		now.setHours(0);								//Sätt dagens timmar till 0
 		birthdayDate.setFullYear(now.getFullYear());    //Ändra inläst år till nuvarande år
-	
-		
 			console.log(birthdayDate);
-			console.log(now);
-		
-	//	var pattern = /\d{4}\-\d{2}\-\d{2}/;
-	//		if (!pattern.test(birthdayDate)){
-	//			throw new Error ("Mata in födelsedatum i formen ÅÅÅÅ-MM-DD");
-	//		}
-		
+			
 		if ((birthdayDate.getTime() - now.getTime()) < 0){		//Om antalet dagar kvar är mindre än 0 har användaren redan fyllt år
 			birthdayDate.setFullYear(now.getFullYear()+1);		//Ändra året till nästkommande år
 		}
@@ -28,7 +26,6 @@ window.onload = function(){
 		var daysLeftRounded = Math.round(daysLeft);				//Avrunda till heltal
 		
 		return daysLeftRounded;
-		
 		
 	};
 	// ------------------------------------------------------------------------------

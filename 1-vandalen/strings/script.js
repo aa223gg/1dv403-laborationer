@@ -15,17 +15,17 @@ window.onload = function(){
 		}
 	
 		for (var i=0; i <= str.length; i+=1){
-			var character = str.charAt(i);
+			var character = str.charAt(i);		//Plocka ut en bokstav i taget
 			
-			if (character == character.toUpperCase()){
+			if (character == character.toUpperCase()){		//Om bokstaven är versal, ändra till gemen
 				text += character.toLowerCase(); 
 			}
-			else if (character == character.toLowerCase()){
+			else if (character == character.toLowerCase()){	//Om bokstaven är gemen, ändra till versal
 				text += character.toUpperCase(); 
 			}
 		}
 		
-		text = text.replace(/a/gi, "#");
+		text = text.replace(/a/gi, "#");		//Ersätter alla a och A med #
 		return text; 
 		
 	};

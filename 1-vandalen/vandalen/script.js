@@ -9,10 +9,25 @@ var makePerson = function(persArr){
     var agesSum;
     var averageAge;
     
-    names = persArr.map(function(person){return person.name});      //Hämtar ut namnen från arrayen och sorterar i ny array
+    names = persArr.map(function(person){          //Hämtar ut värden från arrayen och skapar en ny array
+        if (typeof person.name === "string"){       //Felhantering
+            return person.name;
+        }
+        else{
+            throw new Error("Namnet kan inte betraktas som en sträng.");
+        }
+    });
+    
     names.sort(function (a,b){return a.localeCompare(b, 'sv');});   //Sorterar i bokstavsordning
     
-    ages = persArr.map(function(person){return person.age}); 
+    ages = persArr.map(function(person){
+        if (isNaN(person.age)){
+            throw new Error("Åldern kan inte betraktas som ett heltal.");
+        }
+        else{
+            return person.age;
+            }
+    }); 
     ages.sort();
     
     maxAge = Math.max.apply(Math, ages);

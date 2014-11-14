@@ -7,7 +7,7 @@ window.onload = function(){
 		
 			// Din kod här.
 		var birthdayDate = new Date(date);			//Skapa nytt datumobjekt när användaren fyller år
-		if (isNaN(birthdayDate.valueOf()))			//Kontrollera så att datumet är skrivet i rätt format.
+		if (date.length != 10 || date.charAt(4) != "-" || date.charAt(7) != "-")	//Kontrollera så att datumet är skrivet i rätt format.
  		{
   			throw new Error("Skriv in datum i formen 'ÅÅÅÅ-MM-DD'");
  		}  

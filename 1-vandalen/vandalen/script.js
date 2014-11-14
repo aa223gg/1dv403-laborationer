@@ -28,7 +28,6 @@ var makePerson = function(persArr){
             return person.age;
             }
     }); 
-    ages.sort();
     
     maxAge = Math.max.apply(Math, ages);
     minAge = Math.min.apply(Math, ages);

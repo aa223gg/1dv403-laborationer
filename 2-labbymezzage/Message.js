@@ -8,7 +8,7 @@ function Message(message, date){
     };
     
     this.setText = function(_text) {
-        message = _text;                     //text???
+        message = _text;                    
     };
     
     this.getDate = function() {
@@ -21,9 +21,13 @@ function Message(message, date){
 }
 
 Message.prototype.toString = function() {
-    return this.getText() + " (" +this.getDate() + ") "
-}
+    return this.getText() + " (" +this.getDate() + ") ";
+};
 
-Message.prototype.getHTMLText() = function() {
-    return this.message;        //Hämtar texten med \n utbytt mot <br/>
-}
+Message.prototype.getHTMLText = function() {
+    return this.getText().replace("\n", "</br>", "g");        //replace(/\n/g, "</br>");
+};
+
+Message.prototype.getDateText = function() {
+
+};

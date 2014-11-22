@@ -3,7 +3,9 @@
 #header {text-align: center; font-family: "Fascinate", cursive; font-size: 2em; color: #24734D; text-shadow: 4px 4px 3px #A0CBD7;}
 #content {text-align: center; height: 320px; width: 600px; margin: 0 auto; padding: 5px; font-family: Verdana; color: #24734D;}
 p {padding-left: 250px;}
+#savedMessages {width: 600px; margin: 0 auto;}
 
 /*Background*/
 #container {background-color: #70AE91;}
 #content {background-color: #A0CDB7;}
+#save {background-color: #A0CDB7;}

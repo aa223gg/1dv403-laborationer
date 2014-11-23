@@ -25,9 +25,9 @@ Message.prototype.toString = function() {
 };
 
 Message.prototype.getHTMLText = function() {
-    return this.getText().replace("\n", "</br>", "g");        //replace(/\n/g, "</br>");
+    return this.getText().replace(/\n/g, "<br />");        //replace(/\n/g, "</br>");("\n", "<br />", "g");
 };
 
 Message.prototype.getDateText = function() {
-
+    return this.getDate().toLocaleTimeString();
 };

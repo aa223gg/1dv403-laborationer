@@ -10,7 +10,7 @@ var MessageBoard = {
         
         var button = document.getElementById("submit");         
         var textarea = document.getElementById("textarea");
-        var mess = {};
+        var mess = {}; 
        
         //Skapar meddelande genom att klicka på "Skriv"
         button.addEventListener("click", function(e){
@@ -19,41 +19,57 @@ var MessageBoard = {
             //Lägg till i arrayen
             MessageBoard.messages.push(mess);
             
-            MessageBoard.renderMessages();
+            //MessageBoard.renderMessages();
+            MessageBoard.renderMessage(MessageBoard.messages.length -1);
         });
     },
     
     renderMessage: function(messageID){
-            
+       
             var savedMessages = document.getElementById("savedMessages");       //Hämtar ut stället att spara meddelanden på
             var p = document.createElement("p");                                //Skapa ny p-tagg 
             var footer = document.createElement("footer");                      //Skapa ny footer
-            var date = new Date();
-            var showTime = document.createTextNode(date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds());
             var numberOfMessages = document.getElementById("numberOfMessages"); //Hämtar stället för antal meddelanden
             var sum = document.createTextNode(MessageBoard.messages.length);    //Skapa text med antal meddelanden
+            var time = document.createTextNode(MessageBoard.messages[messageID].getDateText());     //Variabel med tiden
             
             document.getElementById("numberOfMessages").innerHTML = "";         //Rensa antal meddelanden
             document.getElementById("textarea").value = "";                     //Rensa textrutan
             
             p.innerHTML = MessageBoard.messages[messageID].getHTMLText();       //Skriver ut meddelande
-            console.log(MessageBoard.messages);
             
             numberOfMessages.appendChild(sum);                                  //Lägg till antal i numberOfMessages
             savedMessages.appendChild(p);                                       //Lägg p-taggen i saveMessages
             p.appendChild(footer);                                              //Lägg footer i p
-            footer.appendChild(showTime);                                       //Lägg tid i footern
+            footer.appendChild(time);                                           //Lägg tid i footern
             footer.className = "footer";                                        //Ge footern ett klassnamn
+            
+            var imgClose = document.createElement("img");                       //Skapa bild
+            imgClose.src = "delete.svg";                                        //Ladda in bild
+            imgClose.alt = "Delete";                                            //Alt-text
+            var linkClose = document.createElement("a");                        //Skapa länk
+            linkClose.appendChild(imgClose);                                    //Lägg bild i länk
+            linkClose.setAttribute("href", "#");                                //Sätt attribut
+            savedMessages.appendChild(linkClose);                               //Lägg länk i savedMessages
+            linkClose.className = "linkClose";                                  //Ge länk ett klassnamn
+            linkClose.addEventListener("click", function(){                     //Anropa removeMessages vid klick
+                MessageBoard.removeMessages(messageID);
+            });
+            
         },
         
         renderMessages: function(){
             
             document.getElementById("savedMessages").innerHTML = "";            //Ta bort meddelanden
-            
             for (var i = 0; i < MessageBoard.messages.length; ++i){             //Loopa igenom alla meddelanden
                 MessageBoard.renderMessage(i);
             }
         },
+        
+        removeMessages: function(messageID){
+            MessageBoard.messages.splice(messageID, 1);                         //Radera ett meddelande på position messageID
+            MessageBoard.renderMessages();                                      //Anropa sedan renderMessages
+        }
 };
 
 window.onload = MessageBoard.init;

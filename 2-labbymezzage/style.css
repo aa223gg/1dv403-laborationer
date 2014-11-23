@@ -1,11 +1,15 @@
 /*Layout*/
 #container {width: 960px; height: 600px; overflow:auto; margin: 0 auto;}
 #header {text-align: center; font-family: "Fascinate", cursive; font-size: 2em; color: #24734D; text-shadow: 4px 4px 3px #A0CBD7;}
-#content {text-align: center; height: 320px; width: 600px; margin: 0 auto; padding: 5px; font-family: Verdana; color: #24734D;}
-p {padding-left: 250px;}
-#savedMessages {width: 600px; margin: 0 auto;}
+#content {text-align: center; width: 600px; margin: 0 auto; padding-top: 5px; padding-bottom: 15px; font-family: Verdana; color: #24734D;}
+p {text-align: left; padding: 5px;}
+#savedMessages {width: 480px; margin: 0 auto; color: #000; padding-left: 10px; padding-right: 10px; margin-bottom: 10px;}
+.footer {text-align: right; font-size: 0.5em;}
+#messages {text-align:right; font-size: 0.8em; padding-right: 50px;}
 
 /*Background*/
 #container {background-color: #70AE91;}
 #content {background-color: #A0CDB7;}
-#save {background-color: #A0CDB7;}
+p {background-color: #70AE91;}
+.footer {background-color: #70AE91;}
+#messages {background-color: #A0CDB7;}

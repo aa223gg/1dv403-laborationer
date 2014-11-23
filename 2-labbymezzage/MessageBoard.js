@@ -27,27 +27,33 @@ var MessageBoard = {
             
             var savedMessages = document.getElementById("savedMessages");       //Hämtar ut stället att spara meddelanden på
             var p = document.createElement("p");                                //Skapa ny p-tagg 
-            var div = document.createElement("div");                            //Skapa ny div 
             var footer = document.createElement("footer");                      //Skapa ny footer
+            var date = new Date();
+            var showTime = document.createTextNode(date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds());
+            var numberOfMessages = document.getElementById("numberOfMessages"); //Hämtar stället för antal meddelanden
+            var sum = document.createTextNode(MessageBoard.messages.length);    //Skapa text med antal meddelanden
+            
+            document.getElementById("numberOfMessages").innerHTML = "";         //Rensa antal meddelanden
+            document.getElementById("textarea").value = "";                     //Rensa textrutan
             
             p.innerHTML = MessageBoard.messages[messageID].getHTMLText();       //Skriver ut meddelande
+            console.log(MessageBoard.messages);
             
-            div.appendChild(p);                                                 //Lägg p-taggen i div
-            div.appendChild(footer);                                            //Lägg footer i div
-            
-            savedMessages.appendChild(div);                                     //Lägg div-taggen i "save"
+            numberOfMessages.appendChild(sum);                                  //Lägg till antal i numberOfMessages
+            savedMessages.appendChild(p);                                       //Lägg p-taggen i saveMessages
+            p.appendChild(footer);                                              //Lägg footer i p
+            footer.appendChild(showTime);                                       //Lägg tid i footern
+            footer.className = "footer";                                        //Ge footern ett klassnamn
         },
         
         renderMessages: function(){
-            //Remove all messages
-            document.getElementById("textarea").innerHTML = "";
             
-            //Render all messages
-            for (var i = 0; i < MessageBoard.messages.length; ++i){
+            document.getElementById("savedMessages").innerHTML = "";            //Ta bort meddelanden
+            
+            for (var i = 0; i < MessageBoard.messages.length; ++i){             //Loopa igenom alla meddelanden
                 MessageBoard.renderMessage(i);
             }
-        }
+        },
 };
-
 
 window.onload = MessageBoard.init;

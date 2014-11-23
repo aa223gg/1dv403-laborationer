@@ -30,7 +30,7 @@ var MessageBoard = {
             var p = document.createElement("p");                                //Skapa ny p-tagg 
             var footer = document.createElement("footer");                      //Skapa ny footer
             var numberOfMessages = document.getElementById("numberOfMessages"); //Hämtar stället för antal meddelanden
-            var sum = document.createTextNode(MessageBoard.messages.length);    //Skapa text med antal meddelanden
+            var sum = document.createTextNode(MessageBoard.messages.length);    //Skapa text med antal meddelanden          //BLIR EJ 0!!
             var time = document.createTextNode(MessageBoard.messages[messageID].getDateText());     //Variabel med tiden
             
             document.getElementById("numberOfMessages").innerHTML = "";         //Rensa antal meddelanden
@@ -46,14 +46,29 @@ var MessageBoard = {
             
             var imgClose = document.createElement("img");                       //Skapa bild
             imgClose.src = "delete.svg";                                        //Ladda in bild
-            imgClose.alt = "Delete";                                            //Alt-text
+            imgClose.alt = "Radera meddelande";                                  //Alt-text
             var linkClose = document.createElement("a");                        //Skapa länk
             linkClose.appendChild(imgClose);                                    //Lägg bild i länk
             linkClose.setAttribute("href", "#");                                //Sätt attribut
-            savedMessages.appendChild(linkClose);                               //Lägg länk i savedMessages
-            linkClose.className = "linkClose";                                  //Ge länk ett klassnamn
+            p.insertBefore(linkClose, footer);                               //Lägg länk i savedMessages
+            linkClose.className = "link";                                  //Ge länk ett klassnamn
             linkClose.addEventListener("click", function(){                     //Anropa removeMessages vid klick
                 MessageBoard.removeMessages(messageID);
+            });
+            
+            var imgClock = document.createElement("img");                       //Skapa bild
+            imgClock.src = "clock.svg";                                         //Ladda in bild
+            imgClock.alt = "Tid för meddelande";                                //Alt-text
+            var linkClock = document.createElement("a");                        //Skapa länk
+            linkClock.appendChild(imgClock);                                    //Lägg bild i länk
+            linkClock.setAttribute("href", "#");
+            p.insertBefore(linkClock, linkClose);
+            linkClock.className = "link";
+            
+            linkClock.addEventListener("click", function(){
+                var month = MessageBoard.messages[messageID].getDate().getMonth() + 1;
+                alert("Meddelandet skapades:  " + MessageBoard.messages[messageID].getDate().getDate() + "/" + month 
+                + " " + MessageBoard.messages[messageID].getDate().getFullYear() + " kl " + MessageBoard.messages[messageID].getDate().toLocaleTimeString());
             });
             
         },
@@ -69,7 +84,9 @@ var MessageBoard = {
         removeMessages: function(messageID){
             MessageBoard.messages.splice(messageID, 1);                         //Radera ett meddelande på position messageID
             MessageBoard.renderMessages();                                      //Anropa sedan renderMessages
-        }
+        },
+        
+        
 };
 
 window.onload = MessageBoard.init;

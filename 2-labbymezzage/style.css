@@ -6,7 +6,8 @@ p {text-align: left; padding: 5px;}
 #savedMessages {width: 480px; margin: 0 auto; color: #000; padding-left: 10px; padding-right: 10px; margin-bottom: 10px;}
 .footer {text-align: right; font-size: 0.5em;}
 #messages {text-align:right; font-size: 0.8em; padding-right: 50px;}
-.link {float: right;}
+.link {float:right;}
+.img {width: 80%; height: 80%;}
 
 /*Background*/
 #container {background-color: #70AE91;}

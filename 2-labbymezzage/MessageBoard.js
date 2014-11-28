@@ -9,6 +9,7 @@ var MessageBoard = {
         var textarea = document.getElementById("textarea");
         var button = document.getElementById("submit");   
         
+       
         button.addEventListener("click", function(e){                           //Skapar meddelande genom att klicka på "Skriv"
             e.preventDefault();
             MessageBoard.createMessage();
@@ -27,11 +28,11 @@ var MessageBoard = {
             
         var textarea = document.getElementById("textarea");
         var mess = {};
-        mess = new Message(textarea.value, new Date());
+        mess = new Message(textarea.value, new Date());                 //Skapa nytt objekt
         MessageBoard.messages.push(mess);                                   //Lägg meddelandet i arrayen
             
         MessageBoard.renderMessages();
-        // MessageBoard.renderMessage(MessageBoard.messages.length -1);
+        //MessageBoard.renderMessage(MessageBoard.messages.length -1);
     },
     
     renderMessage: function(messageID){
@@ -68,7 +69,7 @@ var MessageBoard = {
             savedMessages.insertBefore(linkDelete, p);               
             linkDelete.className = "link";                                      
             linkDelete.addEventListener("click", function(){                     //Anropa removeMessages vid klick
-                var question = confirm("Vill du radera meddelandet?")
+                var question = confirm("Vill du radera meddelandet?");
                 if (question === true){
                     MessageBoard.removeMessages(messageID);
                 }

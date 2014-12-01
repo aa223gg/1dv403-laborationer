@@ -9,29 +9,44 @@ var Memory = {
         //I init-metoden anropar du arrayslumpsmetoden och sparar resultatet i egenskapen du skapade i 4an.
         var rows = 4;
         var cols = 4;
-        var pictureArray = {};
-        pictureArray = new RandomGenerator.getPictureArray(rows, cols);
-        Memory.memoryNumbers.push(pictureArray);
+        Memory.memoryNumbers = RandomGenerator.getPictureArray(rows, cols);
         
-       var table = document.createElement("table");
+        Memory.createTable(rows, cols, Memory.memoryNumbers);
+    },   
+       
+    createTable: function(rows, cols, memoryNumbers){   
+       var k = 0;
+       var table = document.createElement("table");                 //Skapa tabell
         
-        for (var i = 0; i <= rows; i += 1){
-            var row = document.createElement("tr");
-            table.appendChild(row);
-            for (var j = 0; j <= cols; j += 1){
-                var cell = document.createElement("td");
-                row.appendChild(cell);
-                var img = document.createElement("img");
-                img.src = "pics/0.png"; 
-                cell.appendChild(img);
+        for (var i = 1; i <= rows; i += 1){
+            var row = document.createElement("tr");                 //Skapa tabellrad
+            table.appendChild(row);                                 //Lägg rad i tabell
+            
+            for (var j = 1; j <= cols; j += 1){
+                var cell = document.createElement("td");            //Skapa celler
+                row.appendChild(cell);                              //Lägg celler i raden
+               
+                var img = document.createElement("img");            //Skapa bild
+                img.src = "pics/0.png";                             //Hämta baksidebilden
+                
+                var a = document.createElement("a");                //Skapa a-tagg
+                a.setAttribute("href", "#");
+                a.appendChild(img);                                 //Lägg bilden i a-taggen
+               
+                cell.appendChild(a);                               //Lägg a-taggen i cellen
+                
+                var boardgame = document.getElementById("boardgame");
+                boardgame.appendChild(table);
+                
+                a.addEventListener("click", Memory.turnPiece);
+                }
             }
-        }
-        console.log(table);
+         },
         
-        
-        var content = document.getElementById("content");
-        content.appendChild(table);
-    }
+    turnPiece: function(){
+               
+    },
 };
+
 
 window.onload = Memory.init;

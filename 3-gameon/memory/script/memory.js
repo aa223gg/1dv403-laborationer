@@ -2,20 +2,18 @@
 
 var Memory = {
     
-    
     memoryNumbers: [],
-    pairs: [],              //array för paren
+    pairs: [],              
     numberOfTries: 0,
     numberOfPairs: 0,
+    rows: 4,
+    cols: 3,
     
     init: function(){
         
-        var rows = 4;
-        var cols = 4;
-       
-        Memory.memoryNumbers = RandomGenerator.getPictureArray(rows, cols);
+        Memory.memoryNumbers = RandomGenerator.getPictureArray(Memory.rows, Memory.cols);
         
-        Memory.createTable(rows, cols);
+        Memory.createTable(Memory.rows, Memory.cols);
     },   
        
     createTable: function(rows, cols){   
@@ -50,62 +48,56 @@ var Memory = {
         
     turnPiece: function(index, a, img){
         
-        var turnedPiece = "pics/" + Memory.memoryNumbers[index] + ".png";         
+        var turnedPiece = "pics/" + Memory.memoryNumbers[index] + ".png";  
         var pieceOne;
         var pieceTwo;
+        
                 a.onclick = function(){ 
                
                     if (img.getAttribute("src") === "pics/0.png"){
-                       Memory.pairs.push(img); 
-                       
+                       Memory.pairs.push(img);
                     }
                     
                     if (Memory.pairs.length === 1){
                         pieceOne = Memory.pairs[0];
-                        
                         pieceOne.src = turnedPiece;
                     }
-                    
                     else{
                         pieceTwo = Memory.pairs[1];
                         pieceTwo.src = turnedPiece;
-                        
                     }
                     
-                   
-               if (Memory.pairs.length === 2){
-                    Memory.numberOfTries += 1;
-                    var result = document.getElementById("result");
-                    result.innerHTML = "Antal försök: " + Memory.numberOfTries;
+                    if (Memory.pairs.length === 2){
+                        Memory.numberOfTries += 1;
+                        var result = document.getElementById("result");
+                        result.innerHTML = "Antal försök: " + Memory.numberOfTries;
+                        result.className = "result";
                     
-                    if (pieceOne === pieceTwo){
-                        
-                        console.log("par");
-                        
+                        if (pieceOne === pieceTwo){
+                            Memory.numberOfPairs += 1;
+                            console.log(Memory.numberOfPairs);
+                            if (Memory.numberOfPairs === (Memory.rows * Memory.cols)/2){
+                                Memory.gameOver(Memory.numberOfTries);
+                            }
+                            Memory.pairs = [];
+                        }
+                        else {
+                            setTimeout(function() {
+                                Memory.pairs[0].src = "pics/0.png";
+                                Memory.pairs[1].src = "pics/0.png";
+                                Memory.pairs = [];
+                            }, 1000);
+                        }
                     }
-                   
-                    else {
-                        console.log("inget par");
-                        setTimeout(function() {
-                            
-                    Memory.pairs[0].src = "pics/0.png";
-                    Memory.pairs[1].src = "pics/0.png";
-                      Memory.pairs = [];
-                        }, 1000);
-                       
-                   }
-                   
-                   
-               
-                    
-              }
-               
-               
-               
-              
-               };
-               
+                };
     },
+    
+    gameOver: function(numberOfTries){
+        
+        var finalResult = document.getElementById("result");
+        finalResult.className = "result";
+        finalResult.innerHTML = ("Grattis! Du behövde " + numberOfTries + " försök för att klara spelet.");
+    }
 };
 
 

@@ -50,38 +50,49 @@ var Memory = {
         
     turnPiece: function(index, a, img){
         
-        var turnedPiece = "pics/" + Memory.memoryNumbers[index] + ".png";
-               
+        var turnedPiece = "pics/" + Memory.memoryNumbers[index] + ".png";         
+        var pieceOne;
+        var pieceTwo;
                 a.onclick = function(){ 
                
                     if (img.getAttribute("src") === "pics/0.png"){
-                        Memory.pairs.push(a); 
+                       Memory.pairs.push(img); 
+                       
                     }
                     
-                    if (Memory.pairs.length <= 2){
-                       img.setAttribute("src", turnedPiece);
+                    if (Memory.pairs.length === 1){
+                        pieceOne = Memory.pairs[0];
+                        
+                        pieceOne.src = turnedPiece;
                     }
                     
+                    else{
+                        pieceTwo = Memory.pairs[1];
+                        pieceTwo.src = turnedPiece;
+                        
+                    }
                     
+                   
                if (Memory.pairs.length === 2){
                     Memory.numberOfTries += 1;
                     var result = document.getElementById("result");
                     result.innerHTML = "Antal försök: " + Memory.numberOfTries;
                     
-                    if(Memory.pairs[0] === Memory.pairs[1]){    //if(Memory.pairs[0].src === Memory.pairs[1].src){   ??? Funkar ej!
-                      Memory.numberOfPairs += 1;
-                      console.log(Memory.numberOfPairs);
+                    if (pieceOne === pieceTwo){
+                        
+                        console.log("par");
+                        
                     }
-                    
+                   
                     else {
                         console.log("inget par");
                         setTimeout(function() {
-                            //img.src = "pics/0.png";   //Vänder endast sista bilden
                             
-                         Memory.pairs[0].src = "pics/0.png";        //funkar inte alls
-                      Memory.pairs[1].src = "pics/0.png";
+                    Memory.pairs[0].src = "pics/0.png";
+                    Memory.pairs[1].src = "pics/0.png";
                       Memory.pairs = [];
                         }, 1000);
+                       
                    }
                    
                    

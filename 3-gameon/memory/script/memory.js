@@ -49,8 +49,6 @@ var Memory = {
     turnPiece: function(index, a, img){
         
         var turnedPiece = "pics/" + Memory.memoryNumbers[index] + ".png";  
-        var pieceOne;
-        var pieceTwo;
         
                 a.onclick = function(){ 
                
@@ -58,14 +56,11 @@ var Memory = {
                        Memory.pairs.push(img);
                     }
                     
-                    if (Memory.pairs.length === 1){
-                        pieceOne = Memory.pairs[0];
-                        pieceOne.src = turnedPiece;
+                    if (Memory.pairs.length <= 2){
+                        img.src = turnedPiece;
                     }
-                    else{
-                        pieceTwo = Memory.pairs[1];
-                        pieceTwo.src = turnedPiece;
-                    }
+                    console.log(Memory.pairs[0]);
+                    console.log(Memory.pairs[1]);
                     
                     if (Memory.pairs.length === 2){
                         Memory.numberOfTries += 1;
@@ -73,7 +68,7 @@ var Memory = {
                         result.innerHTML = "Antal försök: " + Memory.numberOfTries;
                         result.className = "result";
                     
-                        if (pieceOne === pieceTwo){
+                        if (Memory.pairs[0] === Memory.pairs[1]){
                             Memory.numberOfPairs += 1;
                             console.log(Memory.numberOfPairs);
                             if (Memory.numberOfPairs === (Memory.rows * Memory.cols)/2){

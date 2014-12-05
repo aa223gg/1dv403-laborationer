@@ -3,21 +3,21 @@
 var Memory = {
     
     memoryNumbers: [],
-    pairs: [],              
+    pictures: [],              
     numberOfTries: 0,
     numberOfPairs: 0,
-    rows: 4,
+    rows: 2,
     cols: 3,
     
     init: function(){
         
-        Memory.memoryNumbers = RandomGenerator.getPictureArray(Memory.rows, Memory.cols);
+        Memory.memoryNumbers = RandomGenerator.getPictureArray(Memory.rows, Memory.cols);   //Array med slumpade nummer
         
         Memory.createTable(Memory.rows, Memory.cols);
     },   
        
     createTable: function(rows, cols){   
-       var index = 0;                                               //Håller reda på vilken bild i arrayen
+       var index = 0;                                               //Håller reda på vilket nummer i arrayen
        var table = document.createElement("table");                 //Skapa tabell
         
         for (var i = 1; i <= rows; i += 1){
@@ -52,34 +52,32 @@ var Memory = {
         
                 a.onclick = function(){ 
                
-                    if (img.getAttribute("src") === "pics/0.png"){
-                       Memory.pairs.push(img);
+                    if (img.getAttribute("src") === "pics/0.png"){              
+                       Memory.pictures.push(img);                               //Bilden läggs till i arrayen
                     }
                     
-                    if (Memory.pairs.length <= 2){
-                        img.src = turnedPiece;
+                    if (Memory.pictures.length <= 2){                           //Så länge det finns en eller två bilder i arrayen vänds bilden
+                        img.src = turnedPiece;                                  
                     }
-                    console.log(Memory.pairs[0]);
-                    console.log(Memory.pairs[1]);
                     
-                    if (Memory.pairs.length === 2){
+                    if (Memory.pictures.length === 2){                          //Antal försök räknas
                         Memory.numberOfTries += 1;
                         var result = document.getElementById("result");
                         result.innerHTML = "Antal försök: " + Memory.numberOfTries;
                         
-                        if (Memory.pairs[0].src === Memory.pairs[1].src){
+                        if (Memory.pictures[0].src === Memory.pictures[1].src){     //Antal par räknas
                             Memory.numberOfPairs += 1;
                             console.log(Memory.numberOfPairs);
                             if (Memory.numberOfPairs === (Memory.rows * Memory.cols)/2){
                                 Memory.gameOver(Memory.numberOfTries);
                             }
-                            Memory.pairs = [];
+                            Memory.pictures = [];
                         }
                         else {
-                            setTimeout(function() {
-                                Memory.pairs[0].src = "pics/0.png";
-                                Memory.pairs[1].src = "pics/0.png";
-                                Memory.pairs = [];
+                            setTimeout(function() {                             //Om bilderna inte är lika vänds de tillbaka
+                                Memory.pictures[0].src = "pics/0.png";
+                                Memory.pictures[1].src = "pics/0.png";
+                                Memory.pictures = [];
                             }, 1000);
                         }
                     }
@@ -88,10 +86,9 @@ var Memory = {
     
     gameOver: function(numberOfTries){
         
-        var finalResult = document.getElementById("result");
+        var finalResult = document.getElementById("result");                    //Resultatet redovisas
         finalResult.innerHTML = ("Grattis! Du behövde " + numberOfTries + " försök för att klara spelet.");
     }
 };
-
 
 window.onload = Memory.init;

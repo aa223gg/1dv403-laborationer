@@ -66,9 +66,8 @@ var Memory = {
                         Memory.numberOfTries += 1;
                         var result = document.getElementById("result");
                         result.innerHTML = "Antal försök: " + Memory.numberOfTries;
-                        result.className = "result";
-                    
-                        if (Memory.pairs[0] === Memory.pairs[1]){
+                        
+                        if (Memory.pairs[0].src === Memory.pairs[1].src){
                             Memory.numberOfPairs += 1;
                             console.log(Memory.numberOfPairs);
                             if (Memory.numberOfPairs === (Memory.rows * Memory.cols)/2){
@@ -90,7 +89,6 @@ var Memory = {
     gameOver: function(numberOfTries){
         
         var finalResult = document.getElementById("result");
-        finalResult.className = "result";
         finalResult.innerHTML = ("Grattis! Du behövde " + numberOfTries + " försök för att klara spelet.");
     }
 };

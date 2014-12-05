@@ -4,4 +4,4 @@
 #content {margin: 0 auto; background-color: #FFF; width: 300px; border-radius: 5px;}
 #boardgame {margin: 0 auto; width: 110px; padding: 20px;}
 
-.result {text-align: center; font-family: Verdana; font-size: 1.2em;}
+#result {text-align: center; font-family: Verdana; font-size: 1.2em;}

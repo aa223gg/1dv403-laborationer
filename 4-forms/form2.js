@@ -7,6 +7,7 @@ var Quiz = {
     answerURL: null,
     input: null,
     answerID: null,
+    questionResult: [],
     
     startGame : function(){
        
@@ -46,7 +47,7 @@ var Quiz = {
             var response = document.getElementById("answer");
             response.innerHTML = "";
             response.appendChild(Quiz.input);
-            Quiz.input.focus();                                               //FUNKAR EJ
+            Quiz.input.focus();                                               
             
             var sendButton = document.createElement("input");                       //Skapa knapp "Svara"
             sendButton.type = "button";
@@ -100,11 +101,12 @@ var Quiz = {
         document.getElementById("question").innerHTML = "";                     //Text vid rätt svar
             document.getElementById("answer").innerHTML = "";
             document.getElementById("question").innerHTML = "Rätt svar!";
-            var result = document.getElementById("result");
-            var resultPerQuestion = document.createTextNode("Du klarade fråga " + Quiz.questionNumber + " på " + Quiz.numberOfTries + " försök.");
-            var br = document.createElement("br");
-            result.appendChild(br);
-            result.appendChild(resultPerQuestion);
+            
+            
+            var resultObject = {tries: Quiz.numberOfTries, number: Quiz.questionNumber};
+           Quiz.questionResult.push(resultObject);
+           
+            
             Quiz.numberOfTries = 1;
             Quiz.questionNumber += 1;
             
@@ -153,6 +155,19 @@ var Quiz = {
         document.getElementById("start").innerHTML = "";
         document.getElementById("question").innerHTML = "Grattis! Du har klarat alla frågor!";
             document.getElementById("answer").innerHTML = "";
+            
+            for (var i = 0; i <= Quiz.questionNumber; i += 1){
+                
+                
+                
+                var resultPerQuestion = document.createTextNode("Du klarade fråga " + Quiz.questionResult[i].number + " på " + Quiz.questionResult[i].tries + " försök.");
+                var result = document.getElementById("result");
+            var br = document.createElement("br");
+            result.appendChild(br);
+            result.appendChild(resultPerQuestion);
+            }
+            
+            
     }
     
 };

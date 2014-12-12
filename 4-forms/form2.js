@@ -46,7 +46,7 @@ var Quiz = {
             var response = document.getElementById("answer");
             response.innerHTML = "";
             response.appendChild(Quiz.input);
-            response.focus();                                                       //FUNKAR EJ
+            Quiz.input.focus();                                               //FUNKAR EJ
             
             var sendButton = document.createElement("input");                       //Skapa knapp "Svara"
             sendButton.type = "button";
@@ -102,6 +102,8 @@ var Quiz = {
             document.getElementById("question").innerHTML = "Rätt svar!";
             var result = document.getElementById("result");
             var resultPerQuestion = document.createTextNode("Du klarade fråga " + Quiz.questionNumber + " på " + Quiz.numberOfTries + " försök.");
+            var br = document.createElement("br");
+            result.appendChild(br);
             result.appendChild(resultPerQuestion);
             Quiz.numberOfTries = 1;
             Quiz.questionNumber += 1;
@@ -148,6 +150,7 @@ var Quiz = {
     },
     
     gameOver: function() {
+        document.getElementById("start").innerHTML = "";
         document.getElementById("question").innerHTML = "Grattis! Du har klarat alla frågor!";
             document.getElementById("answer").innerHTML = "";
     }

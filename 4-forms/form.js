@@ -22,7 +22,7 @@ window.onload = function(){
                 if (xhr.status === 200){
                     var text = JSON.parse(xhr.responseText);
                     document.getElementById("question").innerHTML = text.question;
-                    questionNumber +=1;
+                    questionNumber +=1;                                                             //FEL!
                     document.getElementById("start").innerHTML = "Fråga nr: " + questionNumber;
                     
                     createResponseArea(text.nextURL, text.id, questionNumber);

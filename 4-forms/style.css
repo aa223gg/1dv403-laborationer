@@ -1,0 +1,5 @@
+#container {overflow: auto; margin: 0 auto;}
+#header {text-align: center; font-family: "Verdana"; font-size: 4em; padding-bottom: 30px; padding-top: 50px;}
+
+#content {margin: 0 auto; width: 300px; text-align: center;}
+#question {padding: 20px; }

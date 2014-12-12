@@ -6,8 +6,8 @@ var Memory = {
     pictures: [],              
     numberOfTries: 0,
     numberOfPairs: 0,
-    rows: 2,
-    cols: 3,
+    rows: 3,
+    cols: 4,
     
     init: function(){
         

@@ -26,8 +26,8 @@ var Quiz = {
                 if (xhr.status === 200){
                     var text = JSON.parse(xhr.responseText);
                     document.getElementById("question").innerHTML = text.question;
-                                                                                 
-                    document.getElementById("start").innerHTML = "Fråga nr: " + Quiz.questionNumber;
+                    document.getElementById("start").innerHTML = "";                                                             
+                    document.getElementById("questionNumber").innerHTML = "Fråga nr: " + Quiz.questionNumber;
                     Quiz.answerURL = text.nextURL;
                     Quiz.answerID = text.id;
                     
@@ -49,20 +49,19 @@ var Quiz = {
             response.appendChild(Quiz.input);
             Quiz.input.focus();                                               
             
-            var sendButton = document.createElement("input");                       //Skapa knapp "Svara"
+            var sendButton = document.createElement("input");                   //Skapa knapp "Svara"
             sendButton.type = "button";
             sendButton.value = "Svara";
             var a = document.createElement("a");
             a.appendChild(sendButton);
             response.appendChild(a);
             
-            
-            sendButton.addEventListener("click", function(e){                        //Oncklick på "Svara"
+            sendButton.addEventListener("click", function(e){                    //Oncklick på "Svara"
                 e.preventDefault();
                 Quiz.sendAnswer(); 
             });
             
-            Quiz.input.addEventListener("keypress", function(e){                         //Svara med enter
+            Quiz.input.addEventListener("keypress", function(e){                //Svara med enter
                 if(!e) e = window.event;
                 if (e.keyCode === 13){
                     Quiz.sendAnswer(); 
@@ -80,10 +79,8 @@ var Quiz = {
                         if (xhrAnswer.status === 200){
                             var answerText = JSON.parse(xhrAnswer.responseText);
                             Quiz.correctAnswer(answerText.nextURL); 
-                            
                         }
                         else {
-                            
                             Quiz.numberOfTries += 1;
                             Quiz.wrongAnswer();  
                         }
@@ -99,75 +96,81 @@ var Quiz = {
     
     correctAnswer: function(nextQuestionURL){  
         document.getElementById("question").innerHTML = "";                     //Text vid rätt svar
-            document.getElementById("answer").innerHTML = "";
-            document.getElementById("question").innerHTML = "Rätt svar!";
+        document.getElementById("answer").innerHTML = "";
+        document.getElementById("question").innerHTML = "Rätt svar!";
             
             
-            var resultObject = {tries: Quiz.numberOfTries, number: Quiz.questionNumber};
-           Quiz.questionResult.push(resultObject);
+        var resultObject = {tries: Quiz.numberOfTries, number: Quiz.questionNumber};    //Skapa resultatobjekt med antal försök och frågans nummer och lägg i arrayen
+        Quiz.questionResult.push(resultObject);
            
-            
-            Quiz.numberOfTries = 1;
-            Quiz.questionNumber += 1;
-            
-            var nextQuestion = document.createElement("input");                       //Skapa knapp "Nästa fråga"
-            nextQuestion.type = "button";
-            nextQuestion.value = "Nästa fråga";
-            var aNext = document.createElement("a");
-            aNext.appendChild(nextQuestion);
-            document.getElementById("answer").appendChild(aNext);
-            
-            nextQuestion.addEventListener("click", function(e){                        //Oncklick på "Nästa fråga"
-                e.preventDefault();
-                if (nextQuestionURL === undefined){
-                    Quiz.gameOver();
-                }
-                else {
+        Quiz.numberOfTries = 1;
+        
+        var nextQuestion = document.createElement("input");                     //Skapa knapp "Nästa fråga"
+        nextQuestion.type = "button";
+        nextQuestion.value = "Nästa fråga";
+        var aNext = document.createElement("a");
+        aNext.appendChild(nextQuestion);
+        document.getElementById("answer").appendChild(aNext);
+          
+        nextQuestion.addEventListener("click", function(e){                     //Oncklick på "Nästa fråga"
+            e.preventDefault();
+            if (nextQuestionURL === undefined){
+                Quiz.gameOver();
+            }
+            else {
+                Quiz.questionNumber += 1;
                 Quiz.getQuestion(nextQuestionURL);
-                }
-            });
-            
-            
+            }
+        });
     },
     
     wrongAnswer: function(){  
     
-            document.getElementById("question").innerHTML = "";                 //Text vid fel svar
-            document.getElementById("answer").innerHTML = "";
-            document.getElementById("question").innerHTML = "Fel.";
+        document.getElementById("answer").innerHTML = "";                       //Text vid fel svar
+        document.getElementById("question").innerHTML = "Fel.";
             
-            var tryAgain = document.createElement("input");                       //Skapa knapp "Försök igen"
-            tryAgain.type = "button";
-            tryAgain.value = "Försök igen";
-            var aNext = document.createElement("a");
-            aNext.appendChild(tryAgain);
-            document.getElementById("answer").appendChild(aNext);
+        var tryAgain = document.createElement("input");                         //Skapa knapp "Försök igen"
+        tryAgain.type = "button";
+        tryAgain.value = "Försök igen";
+        var aNext = document.createElement("a");
+        aNext.appendChild(tryAgain);
+        document.getElementById("answer").appendChild(aNext);
             
-            tryAgain.addEventListener("click", function(e){                        //Oncklick på "Försök igen"
-                e.preventDefault();
-                Quiz.getQuestion("http://vhost3.lnu.se:20080/question/" + Quiz.answerID);
-                
-            });
-        
+        tryAgain.addEventListener("click", function(e){                         //Oncklick på "Försök igen"
+            e.preventDefault();
+            Quiz.getQuestion("http://vhost3.lnu.se:20080/question/" + Quiz.answerID);
+        });
     },
     
     gameOver: function() {
         document.getElementById("start").innerHTML = "";
         document.getElementById("question").innerHTML = "Grattis! Du har klarat alla frågor!";
-            document.getElementById("answer").innerHTML = "";
+        document.getElementById("answer").innerHTML = "";
             
-            for (var i = 0; i <= Quiz.questionNumber; i += 1){
-                
-                
-                
-                var resultPerQuestion = document.createTextNode("Du klarade fråga " + Quiz.questionResult[i].number + " på " + Quiz.questionResult[i].tries + " försök.");
-                var result = document.getElementById("result");
+        for (var i = 0; i < Quiz.questionNumber; i += 1){
+            var resultPerQuestion = document.createTextNode("Du klarade fråga " + Quiz.questionResult[i].number + " på " + Quiz.questionResult[i].tries + " försök.");
+            var result = document.getElementById("result");
             var br = document.createElement("br");
             result.appendChild(br);
             result.appendChild(resultPerQuestion);
-            }
+        }
             
+        var start = document.getElementById("result");
+        var startAgain = document.createElement("input");                       //Skapa knapp "Starta ny omgång"
+        startAgain.type = "button";
+        startAgain.value = "Starta ny omgång";
+        var aNew = document.createElement("a");
+        aNew.appendChild(startAgain);
+        start.appendChild(aNew);
             
+        startAgain.addEventListener("click", function(e){                       //Oncklick på "Starta ny omgång"
+            e.preventDefault();
+            document.getElementById("result").innerHTML = "";
+            Quiz.questionNumber = 1; 
+            Quiz.numberOfTries = 1;
+            Quiz.questionResult = [];
+            Quiz.getQuestion("http://vhost3.lnu.se:20080/question/1");
+        });
     }
     
 };

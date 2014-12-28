@@ -30,7 +30,8 @@ var Quiz = {
                     document.getElementById("questionNumber").innerHTML = "Fråga nr: " + Quiz.questionNumber;
                     Quiz.answerURL = text.nextURL;
                     Quiz.answerID = text.id;
-                    
+                    console.log(text);
+                    console.log(text.id);
                     Quiz.createResponseArea(); 
                 }
             }
@@ -113,7 +114,7 @@ var Quiz = {
           
         nextQuestion.addEventListener("click", function(e){                     //Oncklick på "Nästa fråga"
             e.preventDefault();
-            if (nextQuestionURL === undefined){
+            if (nextQuestionURL === undefined){                                 //Om frågorna är slut anropas gameOver
                 Quiz.gameOver();
             }
             else {

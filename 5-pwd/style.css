@@ -1,0 +1,38 @@
+#content {
+    overflow: auto; 
+    margin: 0 auto; 
+    width: 1024px;
+    height: 640px;
+    background-image: url(pics/background.jpg);
+}
+
+#line {
+    width: 1024px;
+    height: 70px;
+    margin: 0 auto;
+    margin-top: 570px;
+    background-color: #000;
+    opacity: 0.5;
+}
+
+#icon {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 584px;
+}
+
+.imageDivHeader {
+    background-color: #2d2421;
+    height: 30px;
+}
+
+.imageDivContent {
+    background-color: #e2dcc7;
+    height: 350px;
+}
+
+.imageDivFooter{
+    background-color: #2d2421;
+    height: 20px;
+}

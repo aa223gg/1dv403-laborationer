@@ -22,6 +22,7 @@ createNewWindow: function(positionLeft, positionTop){
        NewWindow.windowDiv.style.backgroundColor = "yellow";
        NewWindow.windowDiv.style.border = "solid #989898";
        NewWindow.windowDiv.style.borderRadius = "5px";
+       NewWindow.windowDiv.style.overflow = "scroll";
     
         NewWindow.windowDivHeader = document.createElement("header");     //skapa header
         NewWindow.windowDivHeader.className = "imageDivHeader";
@@ -32,6 +33,8 @@ createNewWindow: function(positionLeft, positionTop){
         NewWindow.windowDivFooter.className = "imageDivFooter";
         NewWindow.windowDivFooter.innerHTML = "footer";
         NewWindow.windowDiv.appendChild(NewWindow.windowDivFooter);
+        //NewWindow.windowDivFooter.style.position = "static";
+       // NewWindow.windowDivFooter.style.bottom = "400px";
     
        NewWindow.line = document.getElementById("line");
        NewWindow.content.insertBefore(NewWindow.windowDiv, NewWindow.line);                //lägg in windowDiv före line
@@ -39,8 +42,6 @@ createNewWindow: function(positionLeft, positionTop){
     
     insertContent: function(windowContent){                                                 //lägg in fotogalleri i windowDiv
             NewWindow.windowDiv.insertBefore(windowContent, NewWindow.windowDivFooter);
-            
-            
         }
 };
     

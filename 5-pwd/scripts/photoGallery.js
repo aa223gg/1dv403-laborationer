@@ -15,29 +15,33 @@ var PhotoGallery = {
     createTable: function(imageArray){
     
         var table;
-        var rows = 5;           
-        var cols = 4;
         var row;
         var cell;
         var i;
         var j;
-        var img;
+        var thumbNail;
+        var thumbURL;
         var a;
+        var index = 0;
         
         table = document.createElement("table");
         
-        for (i = 1; i <= 10;i += 1){
+        for (i = 1; i <= imageArray.length/3; i += 1){
             row = document.createElement("tr");
             table.appendChild(row);
             for (j = 1; j <= 3; j += 1){
                 cell = document.createElement("td");
                 row.appendChild(cell);
                 
-                var thumbNail = document.createElement("img");
-                console.log(thumbURL);
-                var thumbURL = imageArray[i].thumbURL;
+                thumbNail = document.createElement("img");
+                a = document.createElement("a");
+                a.setAttribute("href", "#");
+                thumbURL = imageArray[index].thumbURL;
                 thumbNail.src = thumbURL;
-                cell.appendChild(thumbNail);
+                a.appendChild(thumbNail);
+                cell.appendChild(a);
+                
+                index += 1;
             }
         }
         

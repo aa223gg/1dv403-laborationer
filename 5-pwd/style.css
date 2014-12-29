@@ -23,20 +23,20 @@
 }
 
 .windowDivHeader {
-    background-color: white;
+    background-color: #fff;
     height: 50px;
     font-size: 1.5em;
     font-family: "verdana";
 }
 
 .windowDivContent {
-    background-color: #e2dcc7;
+    background-color: #41775d;
     height: 350px;
 }
 
 .windowDivFooter{
-    background-color: #2d2421;
-    height: 20px;
+    background-color: #fff;
+    height: 30px;
     /*position: fixed;
     bottom: 0px; left: 0px; right: 0px; min-height:30px;*/
 }
@@ -46,7 +46,24 @@
     float: right;
 }
 
-.icon {
+.left {
     width: 25px;
     float: left;
 }
+
+.loading {
+    width: 25px;
+    margin-left: 10px;
+    
+}
+
+.hide {
+    display: none;
+}
+
+/*.cell {*/
+    
+/*    background-color: #b8b8b8;*/
+/*    width: 75px;*/
+/*    height: 50px;*/
+/*}*/

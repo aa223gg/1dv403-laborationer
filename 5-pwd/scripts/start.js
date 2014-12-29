@@ -4,8 +4,8 @@ var start = {
     
     openWindow: function() {
         
-        var photoPositionLeft = 250;
-        var photoPositionTop = 100;
+        var photoPositionLeft = 220;
+        var photoPositionTop = 70;
         var iconPhoto;
         
         iconPhoto = document.getElementById("icon");

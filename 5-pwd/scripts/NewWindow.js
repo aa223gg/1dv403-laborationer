@@ -10,23 +10,24 @@ var NewWindow = {
     line: null,
     iconClose: null,
     aClose: null,
+    loading: null,
         
 createNewWindow: function(positionLeft, positionTop){
         console.log("testa createNewWindow");
     
        NewWindow.windowDiv = document.createElement("div");            //skapa div-tagg
        NewWindow.content = document.getElementById("content");
-       NewWindow.windowDiv.style.width = "300px";
+       NewWindow.windowDiv.style.width = "285px";
        NewWindow.windowDiv.style.height = "400px";
        NewWindow.windowDiv.style.position = "absolute";
        NewWindow.windowDiv.style.left = positionLeft + "px";                   
        NewWindow.windowDiv.style.top = positionTop + "px";                     
-       NewWindow.windowDiv.style.backgroundColor = "yellow";
+       NewWindow.windowDiv.style.backgroundColor = "#d8d8d8";
        NewWindow.windowDiv.style.border = "solid #989898";
        NewWindow.windowDiv.style.borderRadius = "5px";
        NewWindow.windowDiv.style.overflow = "scroll";
     
-        NewWindow.windowDivHeader = document.createElement("header");     //skapa header
+        NewWindow.windowDivHeader = document.createElement("header");     //skapa header //FIXA POSITION!
         NewWindow.windowDivHeader.className = "windowDivHeader";
         NewWindow.windowDiv.appendChild(NewWindow.windowDivHeader);
         
@@ -46,13 +47,24 @@ createNewWindow: function(positionLeft, positionTop){
         
         NewWindow.windowDivFooter = document.createElement("footer");     //skapa footer-div
         NewWindow.windowDivFooter.className = "windowDivFooter";
-        NewWindow.windowDivFooter.innerHTML = "footer";
+        NewWindow.loading = document.createElement("img");
+        NewWindow.loading.src = "pics/ajax-loader.gif";
+        NewWindow.loading.className = "loading";
+        NewWindow.windowDivFooter.appendChild(NewWindow.loading);
         NewWindow.windowDiv.appendChild(NewWindow.windowDivFooter);
-        //NewWindow.windowDivFooter.style.position = "absolute";               //FIXA!!
-        //NewWindow.windowDivFooter.style.bottom = "0px";
+        NewWindow.windowDivFooter.style.position = "absolute";               //FIXA!!
+        NewWindow.windowDivFooter.style.bottom = "0px";
+        NewWindow.windowDivFooter.style.left = "0px";
+        NewWindow.windowDivFooter.style.right = "0px";
     
        NewWindow.line = document.getElementById("line");
        NewWindow.content.insertBefore(NewWindow.windowDiv, NewWindow.line);                //lägg in windowDiv före line
+       
+       
+    },
+    
+    hideLoadingIcon: function(){
+        NewWindow.loading.className = "hide";
     },
     
     insertHeaderContent: function(headerIcon, heading){

@@ -16,7 +16,6 @@ var PhotoGallery = {
     
     createTable: function(imageArray){
     
-        //var table;
         var row;
         var cell;
         var i;
@@ -25,6 +24,19 @@ var PhotoGallery = {
         var thumbURL;
         var a;
         var index = 0;
+        // var thumbWidthArray = [];
+        // var thumbHeightArray = [];
+        // var maxWidth;
+        // var maxHeight;
+        
+        // for (i = 0; i <=imageArray.length -1; i += 1){
+        //     thumbWidthArray.push(imageArray[i].thumbWidth);
+        //     thumbHeightArray.push(imageArray[i].thumbHeight);
+        //     maxWidth = Math.max.apply(Math, thumbWidthArray) + 10;
+        //     maxHeight = Math.max.apply(Math, thumbHeightArray) + 10;
+        // }
+        
+            
         
         PhotoGallery.table = document.createElement("table");
         
@@ -35,6 +47,7 @@ var PhotoGallery = {
                 cell = document.createElement("td");
                 row.appendChild(cell);
                 
+                cell.className = "cell";
                 thumbNail = document.createElement("img");
                 a = document.createElement("a");
                 a.setAttribute("href", "#");
@@ -42,6 +55,12 @@ var PhotoGallery = {
                 thumbNail.src = thumbURL;
                 a.appendChild(thumbNail);
                 cell.appendChild(a);
+                
+                cell.style.backgroundColor = "#b8b8b8";
+                cell.style.border = "solid 5px #b8b8b8";
+                //cell.style.width = maxWidth;
+                //cell.style.height = maxHeight;
+                // cell.style.alignContent = "center";         
                 
                 index += 1;
             }
@@ -52,12 +71,15 @@ var PhotoGallery = {
     getContent: function() {
         PhotoGallery.headerIcon = document.createElement("img");
         PhotoGallery.headerIcon.src = "pics/icon.png";
-        PhotoGallery.headerIcon.className = "icon";
+        PhotoGallery.headerIcon.className = "left";
         PhotoGallery.heading = document.createTextNode("Fotogalleri");
         
         NewWindow.insertHeaderContent(PhotoGallery.headerIcon, PhotoGallery.heading);
         
         NewWindow.insertContent(PhotoGallery.table);                      //lägg tabellen i windowDiv
+        
+        NewWindow.hideLoadingIcon();
+        
     },
     
     

@@ -8,6 +8,8 @@ var NewWindow = {
     windowDivFooter: null,
     content: null, 
     line: null,
+    iconClose: null,
+    aClose: null,
         
 createNewWindow: function(positionLeft, positionTop){
         console.log("testa createNewWindow");
@@ -25,24 +27,42 @@ createNewWindow: function(positionLeft, positionTop){
        NewWindow.windowDiv.style.overflow = "scroll";
     
         NewWindow.windowDivHeader = document.createElement("header");     //skapa header
-        NewWindow.windowDivHeader.className = "imageDivHeader";
-        NewWindow.windowDivHeader.innerHTML = "Fotogalleri";
+        NewWindow.windowDivHeader.className = "windowDivHeader";
         NewWindow.windowDiv.appendChild(NewWindow.windowDivHeader);
         
+        NewWindow.iconClose = document.createElement("img");                //lägg in close-ikonen
+        NewWindow.iconClose.src = "pics/close-icon.svg";
+        NewWindow.iconClose.className = "iconClose";
+        NewWindow.aClose = document.createElement("a");
+        NewWindow.aClose.setAttribute("href", "#");
+        NewWindow.aClose.appendChild(NewWindow.iconClose);
+        NewWindow.windowDivHeader.appendChild(NewWindow.aClose);
+       
+        NewWindow.aClose.addEventListener("click", function(){           //FUNKAR ENDAST PÅ ETT FÖNSTER
+            NewWindow.content.removeChild(NewWindow.windowDiv);             //FLYTTA TILLBAKA FÖNSTRET
+            //NewWindow.windowDiv.remove(NewWindow.windowDiv);
+            //NewWindow.windowDiv.parentNode.removeChild(NewWindow.windowDiv);
+        });
+        
         NewWindow.windowDivFooter = document.createElement("footer");     //skapa footer-div
-        NewWindow.windowDivFooter.className = "imageDivFooter";
+        NewWindow.windowDivFooter.className = "windowDivFooter";
         NewWindow.windowDivFooter.innerHTML = "footer";
         NewWindow.windowDiv.appendChild(NewWindow.windowDivFooter);
-        //NewWindow.windowDivFooter.style.position = "static";
-       // NewWindow.windowDivFooter.style.bottom = "400px";
+        //NewWindow.windowDivFooter.style.position = "absolute";               //FIXA!!
+        //NewWindow.windowDivFooter.style.bottom = "0px";
     
        NewWindow.line = document.getElementById("line");
        NewWindow.content.insertBefore(NewWindow.windowDiv, NewWindow.line);                //lägg in windowDiv före line
     },
     
+    insertHeaderContent: function(headerIcon, heading){
+        NewWindow.windowDivHeader.insertBefore(heading, NewWindow.aClose);
+        NewWindow.windowDivHeader.insertBefore(headerIcon, heading);
+    },
+    
     insertContent: function(windowContent){                                                 //lägg in fotogalleri i windowDiv
-            NewWindow.windowDiv.insertBefore(windowContent, NewWindow.windowDivFooter);
-        }
+        NewWindow.windowDiv.insertBefore(windowContent, NewWindow.windowDivFooter);
+    }
 };
     
     

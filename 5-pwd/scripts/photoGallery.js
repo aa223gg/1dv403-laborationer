@@ -3,7 +3,9 @@
 
 var PhotoGallery = {
     
-   
+   table: null,
+   heading: null,
+   headerIcon: null,
     
     createPhotoGallery: function(positionLeft, positionTop){
         console.log("testa createPhotoGallery");
@@ -14,7 +16,7 @@ var PhotoGallery = {
     
     createTable: function(imageArray){
     
-        var table;
+        //var table;
         var row;
         var cell;
         var i;
@@ -24,11 +26,11 @@ var PhotoGallery = {
         var a;
         var index = 0;
         
-        table = document.createElement("table");
+        PhotoGallery.table = document.createElement("table");
         
         for (i = 1; i <= imageArray.length/3; i += 1){
             row = document.createElement("tr");
-            table.appendChild(row);
+            PhotoGallery.table.appendChild(row);
             for (j = 1; j <= 3; j += 1){
                 cell = document.createElement("td");
                 row.appendChild(cell);
@@ -44,10 +46,18 @@ var PhotoGallery = {
                 index += 1;
             }
         }
+        PhotoGallery.getContent();
+    },
+    
+    getContent: function() {
+        PhotoGallery.headerIcon = document.createElement("img");
+        PhotoGallery.headerIcon.src = "pics/icon.png";
+        PhotoGallery.headerIcon.className = "icon";
+        PhotoGallery.heading = document.createTextNode("Fotogalleri");
         
+        NewWindow.insertHeaderContent(PhotoGallery.headerIcon, PhotoGallery.heading);
         
-       NewWindow.insertContent(table);                      //lägg tabellen i windowDiv
-        
+        NewWindow.insertContent(PhotoGallery.table);                      //lägg tabellen i windowDiv
     },
     
     

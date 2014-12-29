@@ -22,17 +22,31 @@
     top: 584px;
 }
 
-.imageDivHeader {
-    background-color: #2d2421;
-    height: 30px;
+.windowDivHeader {
+    background-color: white;
+    height: 50px;
+    font-size: 1.5em;
+    font-family: "verdana";
 }
 
-.imageDivContent {
+.windowDivContent {
     background-color: #e2dcc7;
     height: 350px;
 }
 
-.imageDivFooter{
+.windowDivFooter{
     background-color: #2d2421;
     height: 20px;
+    /*position: fixed;
+    bottom: 0px; left: 0px; right: 0px; min-height:30px;*/
+}
+
+.iconClose{
+    width: 25px;
+    float: right;
+}
+
+.icon {
+    width: 25px;
+    float: left;
 }

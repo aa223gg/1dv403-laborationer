@@ -17,7 +17,7 @@ createNewWindow: function(positionLeft, positionTop){
     
        NewWindow.windowDiv = document.createElement("div");            //skapa div-tagg
        NewWindow.content = document.getElementById("content");
-       NewWindow.windowDiv.style.width = "285px";
+       NewWindow.windowDiv.style.width = "300px";
        NewWindow.windowDiv.style.height = "400px";
        NewWindow.windowDiv.style.position = "absolute";
        NewWindow.windowDiv.style.left = positionLeft + "px";                   

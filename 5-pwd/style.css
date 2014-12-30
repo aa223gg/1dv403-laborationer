@@ -61,9 +61,7 @@
     display: none;
 }
 
-/*.cell {*/
+.center {
+    align: center
     
-/*    background-color: #b8b8b8;*/
-/*    width: 75px;*/
-/*    height: 50px;*/
-/*}*/
+}

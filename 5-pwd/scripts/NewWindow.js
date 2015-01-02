@@ -36,13 +36,15 @@ createNewWindow: function(positionLeft, positionTop){
         NewWindow.iconClose.className = "iconClose";
         NewWindow.aClose = document.createElement("a");
         NewWindow.aClose.setAttribute("href", "#");
-        NewWindow.aClose.appendChild(NewWindow.iconClose);
-        NewWindow.windowDivHeader.appendChild(NewWindow.aClose);
+        NewWindow.aClose.appendChild(NewWindow.iconClose);     
+        
+        NewWindow.windowDivHeader.appendChild(NewWindow.aClose);             
+       
        
         NewWindow.aClose.addEventListener("click", function(){           //FUNKAR ENDAST PÅ ETT FÖNSTER
             NewWindow.content.removeChild(NewWindow.windowDiv);             //FLYTTA TILLBAKA FÖNSTRET
-            //NewWindow.windowDiv.remove(NewWindow.windowDiv);
-            //NewWindow.windowDiv.parentNode.removeChild(NewWindow.windowDiv);
+            ////NewWindow.windowDiv.remove(NewWindow.windowDiv);
+            ////NewWindow.windowDiv.parentNode.removeChild(NewWindow.windowDiv);
         });
         
         NewWindow.windowDivFooter = document.createElement("footer");     //skapa footer-div
@@ -66,6 +68,13 @@ createNewWindow: function(positionLeft, positionTop){
     hideLoadingIcon: function(){
         NewWindow.loading.className = "hide";
     },
+    
+    // insertHeaderContent: function(headerIcon, heading, aClose) {              //nya
+        
+    //     NewWindow.windowDivHeader.appendChild(headerIcon);
+    //     NewWindow.windowDivHeader.appendChild(heading);
+    //     NewWindow.windowDivHeader.appendChild(aLink);
+    // },
     
     insertHeaderContent: function(headerIcon, heading){
         NewWindow.windowDivHeader.insertBefore(heading, NewWindow.aClose);

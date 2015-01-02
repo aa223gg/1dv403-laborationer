@@ -9,7 +9,7 @@ var PhotoGallery = {
    a: null,
    cell: null,
    thumbNail: null,
-   index: 0,
+   //index: 0,
     
     createPhotoGallery: function(positionLeft, positionTop){
         console.log("testa createPhotoGallery");
@@ -26,7 +26,7 @@ var PhotoGallery = {
         //var thumbNail;
         var thumbURL;
         //var a;
-        //var index = 0;
+        var index = 0;
         var thumbWidthArray = [];
         var thumbHeightArray = [];
         var maxWidth;
@@ -48,11 +48,12 @@ var PhotoGallery = {
                 PhotoGallery.cell = document.createElement("td");
                 row.appendChild(PhotoGallery.cell);
                 
-                PhotoGallery.cell.className = "cell";
+               
                 PhotoGallery.thumbNail = document.createElement("img");
+                PhotoGallery.thumbNail.className = "thumbNail";
                 PhotoGallery.a = document.createElement("a");
                 PhotoGallery.a.setAttribute("href", "#");
-                thumbURL = imageArray[PhotoGallery.index].thumbURL;             //????
+                thumbURL = imageArray[index].thumbURL;             
                 PhotoGallery.thumbNail.src = thumbURL;
                 PhotoGallery.a.appendChild(PhotoGallery.thumbNail);
                 PhotoGallery.cell.appendChild(PhotoGallery.a);
@@ -60,19 +61,26 @@ var PhotoGallery = {
                 PhotoGallery.cell.style.backgroundColor = "#b8b8b8";                     //Skapa bakgrundsbox för bilden
                 PhotoGallery.cell.style.width = maxWidth;
                 PhotoGallery.cell.style.height = maxHeight;
-                //cell.style.align = "center";                          //CENTRERA!
-                //cell.style.valign = "middle";
                 
                 
-                PhotoGallery.a.addEventListener("click", function(){
-                    
-                    PhotoGallery.setBackground(imageArray);
-                });
+                PhotoGallery.clickThumbNail(imageArray[index].URL);
                 
-                
-                PhotoGallery.index += 1;
+                index += 1;
             }
         }
+        
+        PhotoGallery.createHeaderAndFooter();
+    },
+    
+    clickThumbNail: function(image) {
+        
+        PhotoGallery.a.addEventListener("click", function(){
+            PhotoGallery.setBackground(image);
+        });
+    },
+    
+    createHeaderAndFooter: function() {
+    
         PhotoGallery.getContent();
     },
     
@@ -95,6 +103,7 @@ var PhotoGallery = {
     getPictures: function() {
         console.log("testa getPictures");
         
+        
        var xhr = new XMLHttpRequest();
         
         xhr.onreadystatechange = function() {
@@ -114,22 +123,14 @@ var PhotoGallery = {
         xhr.send(null);
     },
     
-    setBackground: function(imageArray) {
-        console.log("testa setBackground");
-        
+    setBackground: function(image) {
+       
         var background;
-        var i;
-        var count = 0;
-        
+       
         background = document.getElementById("content");
         
-        for (i = 0; i <= imageArray.length -1; i += 1){
-            
-            var URL = imageArray[count].URL;
-            //console.log(URL);
-            count += 1;
-            background.style.backgroundImage = "url(http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/pics/1050509.jpg)";  //test
-        }
+        background.style.backgroundImage = "url("+image+")";  //test
+        
         
         
         

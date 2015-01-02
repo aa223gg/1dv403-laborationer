@@ -2,19 +2,23 @@
 
 var start = {
     
-    openWindow: function() {
+    positionLeft: 0,
+    positionTop: 0,
+    
+    
+    openWindow: function(positionLeft, positionTop) {
         
-        var photoPositionLeft = 220;
-        var photoPositionTop = 70;
         var iconPhoto;
+        positionLeft = 220;
+        positionTop = 70;
         
         iconPhoto = document.getElementById("icon");
         iconPhoto.addEventListener("click", function(){ 
             
-            photoPositionLeft += 20;
-            photoPositionTop += 20;
+            //positionLeft += 20;
+            //positionTop += 20;
             
-            PhotoGallery.createPhotoGallery(photoPositionLeft, photoPositionTop);
+            PhotoGallery.createPhotoGallery(positionLeft, positionTop);
             
         });
     }

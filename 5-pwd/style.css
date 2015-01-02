@@ -27,6 +27,7 @@
     height: 50px;
     font-size: 1.5em;
     font-family: "verdana";
+    
 }
 
 .windowDivContent {
@@ -37,8 +38,7 @@
 .windowDivFooter{
     background-color: #fff;
     height: 30px;
-    /*position: fixed;
-    bottom: 0px; left: 0px; right: 0px; min-height:30px;*/
+    
 }
 
 .iconClose{

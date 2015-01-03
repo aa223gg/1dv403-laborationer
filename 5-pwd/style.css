@@ -27,18 +27,14 @@
     height: 50px;
     font-size: 1.5em;
     font-family: "verdana";
-    
-}
-
-.windowDivContent {
-    background-color: #41775d;
-    height: 350px;
 }
 
 .windowDivFooter{
     background-color: #fff;
     height: 30px;
-    
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
 }
 
 .iconClose{
@@ -51,10 +47,9 @@
     float: left;
 }
 
-.loading {
+.right {
     width: 25px;
     margin-left: 10px;
-    
 }
 
 .hide {

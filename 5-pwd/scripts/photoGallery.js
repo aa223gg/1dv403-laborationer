@@ -50,7 +50,6 @@ var PhotoGallery = {
         var j;
         var index = 0;
         
-        
         for (i = 0; i <=imageArray.length -1; i += 1){                          //Räkna ut största bredd resp största höjd
             PhotoGallery.thumbWidthArray.push(imageArray[i].thumbWidth);
             PhotoGallery.thumbHeightArray.push(imageArray[i].thumbHeight);

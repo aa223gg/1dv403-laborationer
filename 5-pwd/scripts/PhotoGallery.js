@@ -61,12 +61,13 @@ var PhotoGallery = {
 
         for (i = 0; i <= imageArray.length - 1; i += 1) {
             thumbNail = document.createElement("img");                          //Skapa thumbNails
-            thumbNail.className = "thumbNail";
+           
             a = document.createElement("a");
             a.setAttribute("href", "#");
             thumbURL = imageArray[index].thumbURL;
             thumbNail.src = thumbURL;
             a.appendChild(thumbNail);
+            thumbNail.className = "thumbNail";
 
             box = document.createElement("div");
             box.className = "box";

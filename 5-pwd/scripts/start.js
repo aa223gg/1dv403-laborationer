@@ -13,7 +13,7 @@ var start = {
         positionTop = 70;
         
         iconPhoto = document.getElementById("icon");
-        iconPhoto.addEventListener("click", function(){ 
+        iconPhoto.addEventListener("click", function(){                         //onclick på ikon
             
             //positionLeft += 20;
             //positionTop += 20;
